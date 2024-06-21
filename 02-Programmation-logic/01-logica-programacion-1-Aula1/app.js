@@ -1,16 +1,24 @@
 let numeroSecreto = 6;
-let numeroUsuario = prompt("Me indicas un numero entre 1 y 10 por favor:");
+let numeroUsuario = null;
+let contador = 1;
+let palabraVeces = "vez";
 
-console.log(numeroUsuario);
+while (numeroSecreto != numeroUsuario) {
+  numeroUsuario = parseInt(
+    prompt("Me indicas un numero entre 1 y 10 por favor:")
+  );
 
-
-
-if (numeroUsuario === numeroSecreto) {
-    alert(`Acertaste, el numero es: ${numeroUsuario}`);
-} else {
-    if(numeroUsuario < numeroSecreto) {
-        alert('No acertaste, el numero que ingresaste es menor');
-    } else if (numeroUsuario > numeroSecreto) {
-        alert('No acertaste, el numero que ingresaste es mayor');
-    } 
+  if (numeroUsuario === numeroSecreto) {
+    alert(
+      `Acertaste, el numero es: ${numeroUsuario}, lo hiciste en ${contador} ${palabraVeces}`
+    );
+  } else {
+    if (numeroUsuario < numeroSecreto) {
+      alert("No acertaste, el numero que ingresaste es menor");
+    } else {
+      alert("No acertaste, el numero que ingresaste es mayor");
+    }
+    contador++;
+    palabraVeces = "veces";
+  }
 }
