@@ -1,7 +1,7 @@
 let numeroSecreto = 6;
 let numeroUsuario = null;
 let contador = 1;
-let palabraVeces = "vez";
+let maxIntentos = 3;
 
 while (numeroSecreto != numeroUsuario) {
   numeroUsuario = parseInt(
@@ -10,7 +10,9 @@ while (numeroSecreto != numeroUsuario) {
 
   if (numeroUsuario === numeroSecreto) {
     alert(
-      `Acertaste, el numero es: ${numeroUsuario}, lo hiciste en ${contador} ${palabraVeces}`
+      `Acertaste, el numero es: ${numeroUsuario}, lo hiciste en ${contador} ${
+        contador === 1 ? "vez" : "veces"
+      }`
     );
   } else {
     if (numeroUsuario < numeroSecreto) {
@@ -20,5 +22,10 @@ while (numeroSecreto != numeroUsuario) {
     }
     contador++;
     palabraVeces = "veces";
+
+    if (contador > 3) {
+      alert(`Tus intentos terminaron, son solo ${maxIntentos} veces`);
+      break;
+    }
   }
 }
