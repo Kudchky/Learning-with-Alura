@@ -6,35 +6,40 @@ const numeroAleatorio = () => {
 };
 
 let numAleatorio = numeroAleatorio();
+let contador = 1;
 
 const intentar = () => {
   let $input = parseInt(document.querySelector("input").value);
 
   if (isNaN($input)) {
-    alert("Ingresa un numero valido, no dejes el campo vacio..!");
-    return;
-  }
-
-  if ($input === numAleatorio) {
     modificarElem(
       "resultado",
-      `Acertaste, el numero aleatorio fue: ${numAleatorio}`
+      `No dejes el campo vacio..!, es tu intento nro: ${contador}`
+    );
+  } else if ($input === numAleatorio) {
+    modificarElem(
+      "resultado",
+      `Felicitaciones CHIMPA...!, el numero aleatorio fue: ${numAleatorio}, es tu intento nro: ${contador}`
     );
   } else if ($input < numAleatorio) {
     modificarElem(
       "resultado",
-      "El numero que ingresaste es menor que el numero aleatorio"
+      `Ingresa un numero mayor,  es tu intento nro: ${contador}`
     );
   } else {
     modificarElem(
       "resultado",
-      "El numero que ingresaste es mayor que el numero aleatorio"
+      `Ingresa un numero menor,  es tu intento nro: ${contador}`
     );
   }
-
   document.querySelector("input").value = "";
+  if (contador > 3) {
+    modificarElem("resultado", `Has superado los 3 intentos`);
+    return;
+  }
+  contador++;
 };
 
 modificarElem("titulo_juego", "Juego del numero secreto!");
 
-modificarElem("titulo_rango", "Indica un numero del 1 al 10");
+modificarElem("resultado", "Indica un numero del 1 al 10");
