@@ -9,28 +9,26 @@ const modificarElem = (id, texto) => {
 };
 
 const numeroAleatorio = () => {
-  return Math.floor(Math.random() * intentos) + 1;
+  let numeroGenerado = Math.floor(Math.random() * intentos) + 1;
+  console.log(numeroGenerado);
+  console.log(listaIntentos);
+
+  if (listaIntentos.length === intentos) {
+    modificarElem("resultado", "Ya se sortearon todos los numeros");
+    return;
+  }
+
+  if (listaIntentos.includes(numeroGenerado)) {
+    return numeroAleatorio();
+  } else {
+    listaIntentos.push(numeroGenerado);
+    return numeroGenerado;
+  }
 };
 
 const limpiarValor = () => {
   document.querySelector("input").value = "";
 };
-
-const agregarNumeroArray = () => {
-  if(listaIntentos.length === intentos) return;
-
-  if(listaIntentos.includes(numAleatorio)) {
-    numAleatorio = numeroAleatorio();
-    console.log(numAleatorio)
-    return agregarNumeroArray();
-
-  } else {
-    console.log(numAleatorio);
-    listaIntentos.push(numAleatorio);
-    console.log(listaIntentos);
-    return numAleatorio;
-  }
-}
 
 const condicionesIniciales = () => {
   modificarElem("titulo_juego", "Juego del numero secreto!");
@@ -39,7 +37,6 @@ const condicionesIniciales = () => {
   contador = 1;
   numAleatorio = numeroAleatorio();
   document.getElementById("reiniciar").disabled = true;
-  agregarNumeroArray();
 };
 
 const reiniciarJuego = () => {
@@ -76,7 +73,7 @@ const intentar = () => {
     );
   }
 
-  if (contador === 3) {
+  if (contador === intentos) {
     if ($input !== numAleatorio) {
       modificarElem("resultado", "Perdiste, has superado los 3 intentos");
     } else {
