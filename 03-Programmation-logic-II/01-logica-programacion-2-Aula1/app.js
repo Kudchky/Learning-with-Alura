@@ -1,12 +1,23 @@
+let numAleatorio = 0;
+let contador = 0;
+
 const modificarElem = (id, texto) => {
   document.getElementById(id).innerHTML = texto;
+  return;
 };
+
 const numeroAleatorio = () => {
   return Math.floor(Math.random() * 10) + 1;
 };
 
-let numAleatorio = numeroAleatorio();
-let contador = 1;
+const condicionesIniciales = () => {
+  modificarElem("titulo_juego", "Juego del numero secreto!");
+  modificarElem("resultado", "Indica un numero del 1 al 10");
+  contador = 1;
+  numAleatorio = numeroAleatorio();
+};
+
+condicionesIniciales();
 
 const intentar = () => {
   let $input = parseInt(document.querySelector("input").value);
@@ -39,7 +50,3 @@ const intentar = () => {
   }
   contador++;
 };
-
-modificarElem("titulo_juego", "Juego del numero secreto!");
-
-modificarElem("resultado", "Indica un numero del 1 al 10");
