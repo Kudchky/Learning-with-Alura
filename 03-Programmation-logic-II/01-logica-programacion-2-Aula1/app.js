@@ -45,6 +45,7 @@ const intentar = () => {
     );
     juegoTerminado = true;
     document.getElementById("reiniciar").removeAttribute("disabled");
+    return;
   } else if ($input < numAleatorio) {
     modificarElem(
       "resultado",
@@ -56,17 +57,19 @@ const intentar = () => {
       `Ingresa un numero menor,  es tu intento nro: ${contador}`
     );
   }
-  limpiarValor();
-  if (contador === 3 && $input !== numAleatorio) {
-    modificarElem("resultado", `Perdiste, has superado los 3 intentos`);
+
+  if (contador === 3) {
+    if ($input !== numAleatorio) {
+      modificarElem("resultado", "Perdiste, has superado los 3 intentos");
+    } else {
+      modificarElem("resultado", "¡Ganaste en el ultimo intento!");
+    }
     juegoTerminado = true;
     document.getElementById("reiniciar").removeAttribute("disabled");
-  } else if(contador === 3 && $input === numAleatorio) {
-    modificarElem("resultado", "Ganaste, en el ultimo intento");
-    juegoTerminado = true;
-    document.getElementById("reiniciar").removeAttribute("disabled");
+  } else {
+    contador++;
   }
-  contador++;
+  limpiarValor();
 };
 
 condicionesIniciales();
