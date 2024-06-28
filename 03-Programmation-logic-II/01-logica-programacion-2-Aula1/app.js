@@ -57,10 +57,14 @@ const intentar = () => {
     );
   }
   limpiarValor();
-  if (contador > 3) {
-    modificarElem("resultado", `Has superado los 3 intentos`);
+  if (contador === 3 && $input !== numAleatorio) {
+    modificarElem("resultado", `Perdiste, has superado los 3 intentos`);
+    juegoTerminado = true;
     document.getElementById("reiniciar").removeAttribute("disabled");
-    return;
+  } else if(contador === 3 && $input === numAleatorio) {
+    modificarElem("resultado", "Ganaste, en el ultimo intento");
+    juegoTerminado = true;
+    document.getElementById("reiniciar").removeAttribute("disabled");
   }
   contador++;
 };
