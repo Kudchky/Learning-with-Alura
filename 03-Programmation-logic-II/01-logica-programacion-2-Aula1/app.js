@@ -1,26 +1,45 @@
 let numAleatorio = 0;
 let contador = 0;
 let juegoTerminado = false;
+let intentos = 10;
+let listaIntentos = [];
 
 const modificarElem = (id, texto) => {
   document.getElementById(id).innerHTML = texto;
 };
 
 const numeroAleatorio = () => {
-  return Math.floor(Math.random() * 10) + 1;
+  return Math.floor(Math.random() * intentos) + 1;
 };
 
 const limpiarValor = () => {
   document.querySelector("input").value = "";
 };
 
+const agregarNumeroArray = () => {
+  if(listaIntentos.length === intentos) return;
+
+  if(listaIntentos.includes(numAleatorio)) {
+    numAleatorio = numeroAleatorio();
+    console.log(numAleatorio)
+    return agregarNumeroArray();
+
+  } else {
+    console.log(numAleatorio);
+    listaIntentos.push(numAleatorio);
+    console.log(listaIntentos);
+    return numAleatorio;
+  }
+}
+
 const condicionesIniciales = () => {
   modificarElem("titulo_juego", "Juego del numero secreto!");
-  modificarElem("resultado", "Indica un numero del 1 al 10");
+  modificarElem("resultado", `Indica un numero del 1 al ${intentos}`);
   juegoTerminado = false;
   contador = 1;
   numAleatorio = numeroAleatorio();
   document.getElementById("reiniciar").disabled = true;
+  agregarNumeroArray();
 };
 
 const reiniciarJuego = () => {
@@ -45,7 +64,6 @@ const intentar = () => {
     );
     juegoTerminado = true;
     document.getElementById("reiniciar").removeAttribute("disabled");
-    return;
   } else if ($input < numAleatorio) {
     modificarElem(
       "resultado",
