@@ -3,7 +3,6 @@
 body {
   background-color: #000000;
   color: #f6f6f6;
-  height: 100vh;
 }
 
 .titulo-resalte {
@@ -43,6 +42,9 @@ body {
 }
 
 .presentacion__enlaces__link {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   font-family: "Montserrat", sans-serif;
   font-size: 24px;
   font-weight: 600;
@@ -56,6 +58,10 @@ body {
   border: 2px solid #22d4fd;
 }
 
+.presentacion__enlaces__link:hover {
+  background-color: #272727;
+}
+
 .header__ul {
   display: flex;
 }
@@ -63,16 +69,15 @@ body {
 .presentacion__enlaces_subtitulo {
   font-family: "Krona One", sans-serif;
   font-size: 24px;
-  font-weight: 400px;
+  font-weight: 400;
 }
 
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   background-color: #22d4fd;
   color: #000000;
   font-size: 24px;
   font-family: "Montserrat", sans-serif;
-  height: 80px;
+  padding: 24px;
+  font-weight: 400;
 }
