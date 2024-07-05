@@ -24,6 +24,10 @@ body {
   color: #22d4fd;
 }
 
+.titulo-resalte a {
+  color:#22d4fd;
+}
+
 .presentacion {
   display: flex;
   align-items: center;
